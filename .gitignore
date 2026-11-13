@@ -1,0 +1,10 @@
+# Compiled files
+tank_simulator
+*.o
+
+# Debugging and temporary files
+*.log
+*.tmp
+
+# Editor files
+.vscode/
