@@ -17,7 +17,7 @@ int main(void) {
         Tank tank;
 
         tank.capacity = 2000.0;
-        tank.volume = 750.0;
+        tank.volume = 100.0;
 
         percentage = (tank.volume / tank.capacity) * 100;
 
@@ -25,16 +25,24 @@ int main(void) {
         printf("Tank Volume: %.2fL\n", tank.volume);
         printf("The tank is currently at %.2f%%\n", percentage);
 
-        inflow = 30.0;
-        outflow = 10.0;
-        elapsedTime = 15.0;
+        inflow = 5.0;
+        outflow = 25.0;
+        elapsedTime = 10.0;
 
         newVolume = tank.volume + (inflow - outflow) * elapsedTime;
+        if (newVolume > tank.capacity) {
+            printf("WARNING: Tank capacity exceeded!\n");
+            newVolume = tank.capacity;
+        } else if (newVolume < 0.0) {
+            printf("WARNING: Tank cannot have negative volume!\n");
+            newVolume = 0.0;
+        }
+
         tank.volume = newVolume;
         percentage = tank.volume / tank.capacity * 100;
 
-        printf("After 15 seconds:\n");
-        printf("Tank Volume: %.2fL\n", newVolume);
+        printf("After %.1f seconds:\n", elapsedTime);
+        printf("Tank Volume: %.2fL\n", tank.volume);
         printf("The tank is currently at %.2f%%\n", percentage);
 
         return 0;
